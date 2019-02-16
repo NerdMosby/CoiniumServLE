@@ -53,6 +53,8 @@ namespace CoiniumServ.Jobs
 
         public string MetronomeHash { get; private set; }
 
+        public string MetronomeHashReversed { get; private set; }
+
         public string RefHash { get; private set; }
 
         public string PreviousBlockHash { get; private set; }
@@ -106,6 +108,7 @@ namespace CoiniumServ.Jobs
             Height = blockTemplate.Height;
             GenerationTransaction = generationTransaction;
             MetronomeHash = blockTemplate.MetronomeHash.HexToByteArray().ToHexString();
+            MetronomeHashReversed = blockTemplate.MetronomeHash.HexToByteArray().ReverseByteOrder().ToHexString();
             RefHash = blockTemplate.RefHash.HexToByteArray().ToHexString();
             PreviousBlockHash = blockTemplate.PreviousBlockHash.HexToByteArray().ToHexString();
             PreviousBlockHashReversed = blockTemplate.PreviousBlockHash.HexToByteArray().ReverseByteOrder().ToHexString();
@@ -149,7 +152,7 @@ namespace CoiniumServ.Jobs
                 EncodedDifficulty,
                 NTime,
                 CleanJobs,
-                MetronomeHash,
+                MetronomeHashReversed,
                 RefHash
             };
 
